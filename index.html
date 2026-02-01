@@ -2,50 +2,139 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Valentine ❤️</title>
+<title>Only For You ❤️</title>
 <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-
-  font-family: 'Arial', sans-serif;
-
-  background: linear-gradient(#ff758c, #ff7eb3);
-
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
   color: white;
-
   text-align: center;
+  overflow: hidden;
+}
 
-  padding-top: 15%;
+.container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 20px;
+}
 
+h1 {
+  font-size: 3em;
+  animation: fadeIn 2s ease;
+}
+
+p {
+  font-size: 1.2em;
+  margin: 15px 0;
+  animation: fadeIn 3s ease;
+}
+
+.question {
+  font-size: 2em;
+  margin: 25px 0;
+  animation: pulse 2s infinite;
+}
+
+.buttons {
+  margin-top: 30px;
 }
 
 button {
-
-  padding: 15px 30px;
-
+  padding: 15px 35px;
   font-size: 18px;
-
-  margin: 10px;
-
-  border-radius: 30px;
-
+  border-radius: 40px;
   border: none;
-
   cursor: pointer;
-
+  transition: 0.3s;
 }
 
-.yes { background: #fff; color: #ff4d6d; }
+.yes {
+  background: white;
+  color: #ff4d6d;
+}
 
-.no { background: transparent; color: white; border: 2px solid white; }
+.no {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  position: absolute;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.heart {
+  position: fixed;
+  color: rgba(255,255,255,0.8);
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
 </style>
 </head>
+
 <body>
-<h1>Hey beautiful 💕</h1>
-<p>Life feels sweeter with you in it.</p>
-<h2>Will you be my Valentine? 💖</h2>
-<button class="yes" onclick="alert('Yay! I love you 🥰')">YES 💘</button>
-<button class="no" onclick="this.style.display='none'">NO 😜</button>
+
+<div class="container" id="content">
+  <h1>Hey Love 💕</h1>
+  <p>Every moment with you feels like my favorite song.</p>
+  <p>You make ordinary days feel magical ✨</p>
+
+  <div class="question">Will you be my Valentine? 💖</div>
+
+  <div class="buttons">
+    <button class="yes" onclick="yesClicked()">YES 💘</button>
+    <button class="no" id="noBtn" onmouseover="moveNo()">NO 😜</button>
+  </div>
+</div>
+
+<script>
+function moveNo() {
+  const btn = document.getElementById("noBtn");
+  btn.style.top = Math.random() * 80 + "%";
+  btn.style.left = Math.random() * 80 + "%";
+}
+
+function yesClicked() {
+  document.getElementById("content").innerHTML = `
+    <h1>I KNEW IT 😍</h1>
+    <p>You just made my heart skip a beat 💓</p>
+    <p>This Valentine’s Day… it’s you and me ❤️</p>
+    <h2>Forever starts now 💍</h2>
+  `;
+}
+
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}, 300);
+</script>
+
 </body>
 </html>
- 
